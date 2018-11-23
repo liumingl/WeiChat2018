@@ -13,6 +13,7 @@ import FirebaseStorage
 import IDMPhotoBrowser
 import AVFoundation
 import AVKit
+import IQAudioRecorderController
 
 class ChatViewController: JSQMessagesViewController {
   
@@ -150,6 +151,8 @@ extension ChatViewController {
       
     }else {
       // Audio message
+      let audioVC = AudioViewController(delegate_: self)
+      audioVC.presentAudioRecorder(target: self)
     }
   }
   
@@ -207,6 +210,20 @@ extension ChatViewController {
       return
     }
     
+    // send audio
+    if let audioPath = audio {
+      uploadAudio(audioPath: audioPath, chatRoomId: chatRoomId, view: self.navigationController!.view) { (audioLink) in
+        if audioLink != nil {
+          let text = "[\(kAUDIO)]"
+          outgoingMessage = OutgoingMessages(message: text, audio: audioLink!, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kAUDIO)
+          
+          JSQSystemSoundPlayer.jsq_playMessageSentSound()
+          self.finishSendingMessage()
+          outgoingMessage?.sendMessage(chatRoomId: self.chatRoomId, messageDictionary: outgoingMessage!.messageDictionary, memberIds: self.memberIds, memberToPush: self.membersToPush)
+        }
+      }
+      return
+    }
     
     outgoingMessage!.sendMessage(chatRoomId: chatRoomId!, messageDictionary: outgoingMessage!.messageDictionary, memberIds: memberIds!, memberToPush: membersToPush!)
     
@@ -623,4 +640,17 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     picker.dismiss(animated: true, completion: nil)
   }
+}
+
+//MARK: - IQAudio Recorder Controller Delegate
+extension ChatViewController: IQAudioRecorderViewControllerDelegate {
+  func audioRecorderController(_ controller: IQAudioRecorderViewController, didFinishWithAudioAtPath filePath: String) {
+    controller.dismiss(animated: true, completion: nil)
+    self.sendMessage(text: nil, date: Date(), picture: nil, location: nil, video: nil, audio: filePath)
+  }
+  
+  func audioRecorderControllerDidCancel(_ controller: IQAudioRecorderViewController) {
+    controller.dismiss(animated: true, completion: nil)
+  }
+  
 }

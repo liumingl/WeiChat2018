@@ -32,6 +32,7 @@
 		47F09BA221860290009FB46E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47F09BA021860290009FB46E /* LaunchScreen.storyboard */; };
 		47F09BAA218608B2009FB46E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F09BA9218608B2009FB46E /* WelcomeViewController.swift */; };
 		47F5D62D218B4B6A002D0ABD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */; };
+		47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FFC3B521A84E9400489D15 /* AudioViewController.swift */; };
 		8C97BD302B1910B29F788365 /* Pods_WeiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF1467B1EFBFBD2964A707 /* Pods_WeiChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		47F09BA321860290009FB46E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47F09BA9218608B2009FB46E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		47FFC3B521A84E9400489D15 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		655DCCF20F6E73CF3B9AA3B6 /* Pods-WeiChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiChat/Pods-WeiChat.release.xcconfig"; sourceTree = "<group>"; };
 		CAF6DA30D5EAC3BD9F12B89E /* Pods-WeiChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeiChat/Pods-WeiChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +120,7 @@
 				472DD66221A4532D0020F453 /* Download.swift */,
 				472DD66421A45F4D0020F453 /* PhotoMediaItem.swift */,
 				470F36EA21A5A8280088C8E9 /* VideoMessage.swift */,
+				47FFC3B521A84E9400489D15 /* AudioViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				47F09BAA218608B2009FB46E /* WelcomeViewController.swift in Sources */,
 				47516F5D2188980F007C1979 /* FinishRegistrationViewController.swift in Sources */,
 				47245848218F357C00D4B6E7 /* UsersTableViewController.swift in Sources */,
+				47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */,
 				47583E58219B0EBA008DBD05 /* ChatViewController.swift in Sources */,
 				47516F57218753BF007C1979 /* Constants.swift in Sources */,
 			);
