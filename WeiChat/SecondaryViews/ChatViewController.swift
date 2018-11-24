@@ -14,6 +14,7 @@ import IDMPhotoBrowser
 import AVFoundation
 import AVKit
 import IQAudioRecorderController
+import ProgressHUD
 
 class ChatViewController: JSQMessagesViewController {
   
@@ -43,6 +44,8 @@ class ChatViewController: JSQMessagesViewController {
   var newChatListener: ListenerRegistration?
   var typingListener: ListenerRegistration?
   var updatedChatListener: ListenerRegistration?
+  
+  let appDelegate = UIApplication.shared.delegate as! AppDelegate
   
   //MARK: Custom Headers
   
@@ -124,7 +127,9 @@ extension ChatViewController {
     }
     
     let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (action) in
-      print("Share Location")
+      if self.haveAccessToUserLocation() {
+        self.sendMessage(text: nil, date: Date(), picture: nil, location: kLOCATION, video: nil, audio: nil)
+      }
     }
     
     let cancel = UIAlertAction(title: "Cancel", style: .cancel)
@@ -223,6 +228,13 @@ extension ChatViewController {
         }
       }
       return
+    }
+    
+    // send location message
+    if location != nil {
+      print("send location")
+      let lat: NSNumber = NSNumber(value: appDelegate.coordinates!.latitude)
+      let long: NSNumber = NSNumber(value: appDelegate.coordinates!.longitude)
     }
     
     outgoingMessage!.sendMessage(chatRoomId: chatRoomId!, messageDictionary: outgoingMessage!.messageDictionary, memberIds: memberIds!, memberToPush: membersToPush!)
@@ -325,6 +337,16 @@ extension ChatViewController {
     let message = incomingMessage.createMessage(messageDictionary: messageDictionary, chatRoomId: chatRoomId)
     objectMessages.insert(messageDictionary, at: 0)
     messages.insert(message!, at: 0)
+  }
+  
+  //MARK: - Location access
+  func haveAccessToUserLocation() -> Bool {
+    if appDelegate.locationManager != nil {
+      return true
+    }else {
+      ProgressHUD.showError("Please give access location in Settings")
+      return false
+    }
   }
   
   //MARK: - Helper functions

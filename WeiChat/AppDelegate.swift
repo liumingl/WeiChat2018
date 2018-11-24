@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   
   var authListener: AuthStateDidChangeListenerHandle?
+  
+  var locationManager: CLLocationManager?
+  var coordinates: CLLocationCoordinate2D?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
@@ -72,3 +76,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+  
+  //MARK: - Location Manager
+  func locationManagerStart() {
+    if locationManager == nil {
+      locationManager = CLLocationManager()
+      locationManager?.delegate = self
+      locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+      locationManager?.requestWhenInUseAuthorization()
+    }
+    
+    locationManager?.startUpdatingLocation()
+  }
+  
+  func locationManagerStop() {
+    if locationManager != nil {
+      locationManager?.stopUpdatingLocation()
+    }
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    print("faild to get Location")
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    switch status {
+    case .notDetermined:
+      manager.requestWhenInUseAuthorization()
+    case .authorizedWhenInUse:
+      manager.startUpdatingLocation()
+    case .authorizedAlways:
+      manager.startUpdatingLocation()
+    case .restricted:
+      print("restricted")
+    case .denied:
+      locationManager = nil
+      print("Denied Location")
+      break
+    }
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    coordinates = locations.last!.coordinate
+  }
+}
