@@ -49,6 +49,11 @@ class ChatViewController: JSQMessagesViewController {
   
   let appDelegate = UIApplication.shared.delegate as! AppDelegate
   
+  var jsqAvatarDictionary: NSMutableDictionary?
+  var avatarImageDictionary: NSMutableDictionary?
+  var showAvatars = true
+  var firstLoad: Bool?
+  
   //MARK: Custom Headers
   
   var withUsers: [FUser] = []
@@ -98,6 +103,8 @@ class ChatViewController: JSQMessagesViewController {
     
     collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
     collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+    
+    jsqAvatarDictionary = [:]
     
     setCustomTitle()
     
@@ -413,6 +420,64 @@ extension ChatViewController {
   }
   
   //MARK: - Helper functions
+  func presentUserProfile(forUser: FUser) {
+    let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileView") as! ProfileTableViewController
+    
+    profileVC.user = forUser
+    self.navigationController?.pushViewController(profileVC, animated: true)
+  }
+  
+  func getAvatarImages() {
+    if showAvatars {
+      collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 30, height: 30)
+      
+      collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: 30, height: 30)
+      
+      // get current user avatar
+      avatarImageFrom(fUser: FUser.currentUser()!)
+      for user in withUsers {
+        avatarImageFrom(fUser: user)
+      }
+    }
+  }
+  
+  func avatarImageFrom(fUser: FUser) {
+    if fUser.avatar != "" {
+      dataImageFromString(pictureString: fUser.avatar) { (imageData) in
+        if imageData == nil { return }
+        
+        if self.avatarImageDictionary != nil {
+          // update avatar if we had one.
+          self.avatarImageDictionary!.removeObject(forKey: fUser.objectId)
+          self.avatarImageDictionary?.setObject(imageData!, forKey: fUser.objectId as NSCopying)
+        }else {
+          self.avatarImageDictionary = [fUser.objectId: imageData!]
+        }
+        
+        //Create JSQAvatar
+        self.createJSQAvatars(avatarDictionary: self.avatarImageDictionary!)
+        
+      }
+    }
+  }
+  
+  func createJSQAvatars(avatarDictionary: NSMutableDictionary?) {
+    let defaultAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "avatarPlaceholder"), diameter: 70)
+    
+    if avatarDictionary != nil {
+      for userId in memberIds {
+        if let avatarImageData = avatarDictionary![userId] {
+          let jsqAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(data: avatarImageData as! Data), diameter: 70)
+          
+          self.jsqAvatarDictionary!.setValue(jsqAvatar, forKey: userId)
+        }else {
+          self.jsqAvatarDictionary!.setValue(defaultAvatar, forKey: userId)
+        }
+      }
+      self.collectionView.reloadData()
+    }
+  }
+  
   func removeListener() {
     if typingListener != nil {
       typingListener!.remove()
@@ -453,6 +518,9 @@ extension ChatViewController {
         self.setUIForSingleChat()
       }
     }
+    
+    //get avatars
+    self.getAvatarImages()
     
   }
   
@@ -732,6 +800,42 @@ extension ChatViewController {
       print("unknow media type")
     }
   }
+  
+  override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
+    
+    let message = messages[indexPath.row]
+    
+    var avatar: JSQMessageAvatarImageDataSource
+    
+    if let testAvatar = jsqAvatarDictionary!.object(forKey: message.senderId) {
+      avatar = testAvatar as! JSQMessageAvatarImageDataSource
+    }else {
+      avatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "avatarPlaceholder"), diameter: 70)
+    }
+    
+    return avatar
+  }
+  
+  override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, at indexPath: IndexPath!) {
+    let senderId = messages[indexPath.row].senderId
+    var selectedUser: FUser?
+    
+    if senderId == FUser.currentId() {
+      selectedUser = FUser.currentUser()
+    }else {
+      for user in withUsers {
+        if user.objectId == senderId {
+          selectedUser = user
+        }
+      }
+    }
+    
+    //show user profile
+    presentUserProfile(forUser: selectedUser!)
+  }
+  
+  
+  
 }
 
 extension JSQMessagesInputToolbar {
