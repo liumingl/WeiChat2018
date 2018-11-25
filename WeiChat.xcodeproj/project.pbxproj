@@ -32,6 +32,8 @@
 		47F09BA221860290009FB46E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47F09BA021860290009FB46E /* LaunchScreen.storyboard */; };
 		47F09BAA218608B2009FB46E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F09BA9218608B2009FB46E /* WelcomeViewController.swift */; };
 		47F21C6021A99CA200465B91 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C5F21A99CA200465B91 /* MapViewController.swift */; };
+		47F21C6221AAE24E00465B91 /* PicturesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */; };
+		47F21C6421AAE28500465B91 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */; };
 		47F5D62D218B4B6A002D0ABD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */; };
 		47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FFC3B521A84E9400489D15 /* AudioViewController.swift */; };
 		8C97BD302B1910B29F788365 /* Pods_WeiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF1467B1EFBFBD2964A707 /* Pods_WeiChat.framework */; };
@@ -66,6 +68,8 @@
 		47F09BA321860290009FB46E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47F09BA9218608B2009FB46E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		47F21C5F21A99CA200465B91 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCollectionViewController.swift; sourceTree = "<group>"; };
+		47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		47FFC3B521A84E9400489D15 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		655DCCF20F6E73CF3B9AA3B6 /* Pods-WeiChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiChat/Pods-WeiChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			children = (
 				47245844218F2F8400D4B6E7 /* UserTableViewCell.swift */,
 				47EDA7C4219670B500024E5C /* RecentChatsTableViewCell.swift */,
+				47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */,
 				47583E57219B0EBA008DBD05 /* ChatViewController.swift */,
 				47F21C5F21A99CA200465B91 /* MapViewController.swift */,
+				47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */,
 			);
 			path = SecondaryViews;
 			sourceTree = "<group>";
@@ -362,10 +368,12 @@
 				470F36EB21A5A8280088C8E9 /* VideoMessage.swift in Sources */,
 				472DD66521A45F4D0020F453 /* PhotoMediaItem.swift in Sources */,
 				472526BB219C6CE50093A92E /* IncomingMessage.swift in Sources */,
+				47F21C6421AAE28500465B91 /* PictureCollectionViewCell.swift in Sources */,
 				47516F592187557B007C1979 /* HelperFunctions.swift in Sources */,
 				472526B9219C64CC0093A92E /* OutgoingMessages.swift in Sources */,
 				47F21C6021A99CA200465B91 /* MapViewController.swift in Sources */,
 				47516F55218753A5007C1979 /* FUser.swift in Sources */,
+				47F21C6221AAE24E00465B91 /* PicturesCollectionViewController.swift in Sources */,
 				472DD66121A44EE40020F453 /* Camera.swift in Sources */,
 				47F09B982186028F009FB46E /* AppDelegate.swift in Sources */,
 				47F5D62D218B4B6A002D0ABD /* SettingsTableViewController.swift in Sources */,

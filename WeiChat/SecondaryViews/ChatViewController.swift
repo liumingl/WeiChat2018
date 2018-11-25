@@ -112,7 +112,16 @@ class ChatViewController: JSQMessagesViewController {
     
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    clearRecentCounter(chatRoomId: chatRoomId)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    clearRecentCounter(chatRoomId: chatRoomId)
+  }
+  
   @objc func backAction() {
+    clearRecentCounter(chatRoomId: chatRoomId)
     
     removeListener()
     self.navigationController?.popViewController(animated: true)
@@ -311,6 +320,7 @@ extension ChatViewController {
       print("We have \(self.messages.count) messages loaded.")
       
       //get picture message
+      self.getPictureMessages()
       
       //get old message in Background
       self.getOldMessagesInBackground()
@@ -333,6 +343,7 @@ extension ChatViewController {
         self.loadedMessages = self.removeBadMessages(allMessages: sorted) + self.loadedMessages
         
         // get picture message
+        self.getPictureMessages()
         
         self.maxMessageNumber = self.loadedMessages.count - self.loadedMessageCount - 1
         self.minMessageNumber = self.maxMessageNumber - kNUMBEROFMESSAGES
@@ -420,6 +431,34 @@ extension ChatViewController {
   }
   
   //MARK: - Helper functions
+  func updatePushMembers(recent: NSDictionary, mute: Bool) {
+    var membersToPush = recent[kMEMBERSTOPUSH] as! [String]
+    
+    if mute {
+      let index = membersToPush.index(of: FUser.currentId())!
+      membersToPush.remove(at: index)
+    }else {
+      membersToPush.append(FUser.currentId())
+    }
+    
+    //Save the changes
+    updateExistingRecentWithNewValues(chatRoomId: chatRoomId, members: recent[kMEMBERS] as! [String], withValues: [kMEMBERSTOPUSH: membersToPush])
+  }
+  
+  func addNewPictureMessageLink(link: String) {
+    allPictureMessages.append(link)
+  }
+  
+  func getPictureMessages() {
+    allPictureMessages = []
+    
+    for message in loadedMessages {
+      if message[kTYPE] as! String == kPICTURE {
+        allPictureMessages.append(message[kPICTURE] as! String)
+      }
+    }
+  }
+  
   func presentUserProfile(forUser: FUser) {
     let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileView") as! ProfileTableViewController
     
@@ -543,7 +582,11 @@ extension ChatViewController {
   }
   
   @objc func infoButtonPressed() {
-    print("show image message")
+    let mediaVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mediaView") as! PicturesCollectionViewController
+    
+    mediaVC.allImageLinks = allPictureMessages
+    
+    self.navigationController?.pushViewController(mediaVC, animated: true)
   }
   
   @objc func showGroup() {
@@ -576,6 +619,7 @@ extension ChatViewController {
                 //this is for picture message
                 if (type as! String) == kPICTURE {
                   // add to pic
+                  self.addNewPictureMessageLink(link: item[kPICTURE] as! String)
                 }
                 
                 if self.insertInitialLoadMessages(messageDictionary: item) {

@@ -400,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XA1-H8-aiB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4594" y="-201"/>
+            <point key="canvasLocation" x="4649" y="-201"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Iv2-p5-mNn">
@@ -726,6 +726,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbC-7E-phs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6848.8000000000002" y="-188.45577211394306"/>
+        </scene>
+        <!--Pictures Collection View Controller-->
+        <scene sceneID="dS6-OV-VAG">
+            <objects>
+                <collectionViewController storyboardIdentifier="mediaView" id="ufp-V7-Osi" customClass="PicturesCollectionViewController" customModule="WeiChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="QS5-bZ-yWf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Jx-tl-XS0">
+                            <size key="itemSize" width="105" height="105"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="25" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="qWA-65-eWN" customClass="PictureCollectionViewCell" customModule="WeiChat" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="105" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MHl-MM-32F">
+                                            <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="MHl-MM-32F" firstAttribute="leading" secondItem="qWA-65-eWN" secondAttribute="leading" id="7Zi-tB-7JA"/>
+                                    <constraint firstAttribute="bottom" secondItem="MHl-MM-32F" secondAttribute="bottom" id="Ps9-wX-M1S"/>
+                                    <constraint firstItem="MHl-MM-32F" firstAttribute="top" secondItem="qWA-65-eWN" secondAttribute="top" id="Puv-Pa-MqY"/>
+                                    <constraint firstAttribute="trailing" secondItem="MHl-MM-32F" secondAttribute="trailing" id="q7m-ib-6vf"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="MHl-MM-32F" id="jM8-ig-QFr"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ufp-V7-Osi" id="giW-AX-8Gh"/>
+                            <outlet property="delegate" destination="ufp-V7-Osi" id="OMV-BE-Utg"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDX-Gd-05a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7548" y="-188"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3kV-YP-sS1">
