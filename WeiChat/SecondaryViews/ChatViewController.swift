@@ -45,6 +45,8 @@ class ChatViewController: JSQMessagesViewController {
   var typingListener: ListenerRegistration?
   var updatedChatListener: ListenerRegistration?
   
+  var typingCounter = 0
+  
   let appDelegate = UIApplication.shared.delegate as! AppDelegate
   
   //MARK: Custom Headers
@@ -82,6 +84,8 @@ class ChatViewController: JSQMessagesViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    createTypingObserver()
+    
     self.senderId = FUser.currentId()
     self.senderDisplayName = FUser.currentUser()?.fullname
     
@@ -102,6 +106,8 @@ class ChatViewController: JSQMessagesViewController {
   }
   
   @objc func backAction() {
+    
+    removeListener()
     self.navigationController?.popViewController(animated: true)
   }
   
@@ -235,6 +241,9 @@ extension ChatViewController {
       print("send location")
       let lat: NSNumber = NSNumber(value: appDelegate.coordinates!.latitude)
       let long: NSNumber = NSNumber(value: appDelegate.coordinates!.longitude)
+      
+      let text = "[\(kLOCATION)]"
+      outgoingMessage = OutgoingMessages(message: text, latitude: lat, longitude: long, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kLOCATION)
     }
     
     outgoingMessage!.sendMessage(chatRoomId: chatRoomId!, messageDictionary: outgoingMessage!.messageDictionary, memberIds: memberIds!, memberToPush: membersToPush!)
@@ -255,6 +264,21 @@ extension ChatViewController {
   
   //MARK: - Load Messages
   func loadMessages() {
+    // to update message status
+    updatedChatListener = reference(.Message).document(FUser.currentId()).collection(chatRoomId).addSnapshotListener({ (snapshot, error) in
+      guard let snapshot = snapshot else { return }
+      
+      if !snapshot.isEmpty {
+        snapshot.documentChanges.forEach({ (diff) in
+          if diff.type == .modified {
+            // update local message
+            self.updateMessage(messageDictionary: diff.document.data() as NSDictionary)
+          }
+        })
+      }
+    })
+    
+    
     //get last 11 messages
     reference(.Message).document(FUser.currentId()).collection(chatRoomId).order(by: kDATE, descending: true).limit(to: 11).getDocuments { (snapshot, error) in
       guard let snapshot = snapshot else {
@@ -349,7 +373,61 @@ extension ChatViewController {
     }
   }
   
+  //MARK: - Typing Indicator
+  func createTypingObserver() {
+    typingListener = reference(.Typing).document(chatRoomId).addSnapshotListener({ (snapshot, error) in
+      guard let snapshot = snapshot else { return }
+      
+      if snapshot.exists {
+        for data in snapshot.data()! {
+          if data.key != FUser.currentId() {
+            let typing = data.value as! Bool
+            self.showTypingIndicator = typing
+            if typing {
+              self.scrollToBottom(animated: true)
+            }
+          }
+        }
+      }else {
+        reference(.Typing).document(self.chatRoomId).setData([FUser.currentId(): false])
+      }
+      
+    })
+  }
+  
+  func typingCounterStart() {
+    typingCounter += 1
+    typingCounterSave(typing: true)
+    self.perform(#selector(self.typingCounterStop), with: nil, afterDelay: 2.0)
+  }
+  
+  @objc func typingCounterStop() {
+    typingCounter -= 1
+    if typingCounter == 0 {
+      typingCounterSave(typing: false)
+    }
+  }
+  
+  func typingCounterSave(typing: Bool) {
+    reference(.Typing).document(chatRoomId).updateData([FUser.currentId(): typing])
+  }
+  
   //MARK: - Helper functions
+  func removeListener() {
+    if typingListener != nil {
+      typingListener!.remove()
+    }
+    
+    if newChatListener != nil {
+      newChatListener!.remove()
+    }
+    
+    if updatedChatListener != nil {
+      updatedChatListener!.remove()
+    }
+  }
+  
+  
   func setCustomTitle() {
     leftBarButtonView.addSubview(avatarButton)
     leftBarButtonView.addSubview(titleLabel)
@@ -497,6 +575,8 @@ extension ChatViewController {
     //check if incoming
     if (messageDictionary[kSENDERID] as! String) != FUser.currentId() {
       //update message status
+      OutgoingMessages.updateMessage(withId: messageDictionary[kMESSAGEID] as! String, chatRoomId: chatRoomId, memberIds: memberIds)
+      
     }
     
     let message = incomingMessage.createMessage(messageDictionary: messageDictionary, chatRoomId: chatRoomId)
@@ -507,6 +587,16 @@ extension ChatViewController {
     }
     
     return isIncoming(messageDictionary: messageDictionary)
+  }
+  
+  func updateMessage(messageDictionary: NSDictionary) {
+    for index in 0 ..< objectMessages.count {
+      let temp = objectMessages[index]
+      if messageDictionary[kMESSAGEID] as! String == temp[kMESSAGEID] as! String {
+        objectMessages[index] = messageDictionary
+        self.collectionView.reloadData()
+      }
+    }
   }
   
   func isIncoming(messageDictionary: NSDictionary) -> Bool {
@@ -579,7 +669,8 @@ extension ChatViewController {
       status = NSAttributedString(string: kDELIVERED)
     case kREAD:
       let statusText = "Read" + " " + readTimeFrom(dateString: message[kREADDATE] as! String)
-      status = NSAttributedString(string: statusText, attributes: [NSAttributedString.Key.foregroundColor : attributedStringColor])
+      
+      status = NSAttributedString(string: statusText, attributes: attributedStringColor)
     default:
       status = NSAttributedString(string: "✔️")
     }
@@ -621,7 +712,11 @@ extension ChatViewController {
       let browser = IDMPhotoBrowser(photos: photos)
       self.present(browser!, animated: true, completion: nil)
     case kLOCATION:
-      print("location message tapped")
+      let message = messages[indexPath.row]
+      let mediaItem = message.media as! JSQLocationMediaItem
+      let mapView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+      mapView.location = mediaItem.location
+      self.navigationController?.pushViewController(mapView, animated: true)
     case kVIDEO:
       let message = messages[indexPath.row]
       let mediaItem = message.media as! VideoMessage
@@ -675,4 +770,11 @@ extension ChatViewController: IQAudioRecorderViewControllerDelegate {
     controller.dismiss(animated: true, completion: nil)
   }
   
+}
+
+extension ChatViewController: UITextFieldDelegate {
+  override func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    typingCounterStart()
+    return true
+  }
 }

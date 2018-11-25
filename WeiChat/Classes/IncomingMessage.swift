@@ -34,7 +34,7 @@ class IncomingMessage {
     case kAUDIO:
       message = createAudioMessage(messageDictionary: messageDictionary)
     case kLOCATION:
-      print("create location message.")
+      message = createLocationMessage(messageDictionary: messageDictionary)
     default:
       print("Unknow message type.")
     }
@@ -160,6 +160,34 @@ class IncomingMessage {
     
     return audioMessage!
     
+  }
+  
+  func createLocationMessage(messageDictionary: NSDictionary) -> JSQMessage {
+    let name = messageDictionary[kSENDERNAME] as! String
+    let userId = messageDictionary[kSENDERID] as! String
+    
+    var date: Date!
+    if let create = messageDictionary[kDATE] {
+      if (create as! String).count != 14 {
+        date = Date()
+      }else {
+        date = dateFormatter().date(from: create as! String)
+      }
+    }
+    
+    //let text = messageDictionary[kMESSAGE]
+    let latitude = messageDictionary[kLATITUDE] as? Double
+    let longitude = messageDictionary[kLONGITUDE] as? Double
+    let mediaItem = JSQLocationMediaItem(location: nil)
+    
+    mediaItem?.appliesMediaViewMaskAsOutgoing = returnOutgoingStatusForUser(senderId: userId)
+    
+    let location = CLLocation(latitude: latitude!, longitude: longitude!)
+    mediaItem?.setLocation(location, withCompletionHandler: {
+      self.collectionView.reloadData()
+    })
+    
+    return JSQMessage(senderId: userId, senderDisplayName: name, date: date, media: mediaItem)
   }
   
   //MARK: - Helper
