@@ -91,6 +91,8 @@ class ChatViewController: JSQMessagesViewController {
     
     createTypingObserver()
     
+    JSQMessagesCollectionViewCell.registerMenuAction(#selector(delete))
+    
     self.senderId = FUser.currentId()
     self.senderDisplayName = FUser.currentUser()?.fullname
     
@@ -125,6 +127,39 @@ class ChatViewController: JSQMessagesViewController {
     
     removeListener()
     self.navigationController?.popViewController(animated: true)
+  }
+  
+  //MARK: - for multimedia message delete option
+  override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+    super.collectionView(collectionView, shouldShowMenuForItemAt: indexPath)
+    
+    return true
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+    if messages[indexPath.row].isMediaMessage {
+      if action.description == "delete:" {
+        return true
+      }else {
+        return false
+      }
+    }else {
+      if action.description == "delete:" || action.description == "copy:" {
+        return true
+      }else {
+        return false
+      }
+    }
+  }
+  
+  override func collectionView(_ collectionView: JSQMessagesCollectionView!, didDeleteMessageAt indexPath: IndexPath!) {
+    let messageId = objectMessages[indexPath.row][kMESSAGEID] as! String
+    
+    objectMessages.remove(at: indexPath.row)
+    messages.remove(at: indexPath.row)
+    
+    // delete message form firebase
+    OutgoingMessages.deleteMessage(withId: messageId, chatRoomId: chatRoomId)
   }
   
 }

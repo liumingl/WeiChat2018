@@ -481,6 +481,11 @@ func updateCurrentUserOneSignalId(newId: String) {
     }
 }
 
+//MARK: - check user block status
+func checkBlockedStatus(withUser: FUser) -> Bool {
+  return withUser.blockedUsers.contains(FUser.currentId())
+}
+
 
 
 

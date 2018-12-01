@@ -181,7 +181,7 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
-      self.deleteRecentChat(recentDictionary: tempRecent)
+      deleteRecentChat(recentDictionary: tempRecent)
       self.tableView.reloadData()
     }
     
@@ -220,13 +220,6 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     
     //show chat view
     
-  }
-  
-  //MARK: - Delete Recent
-  func deleteRecentChat(recentDictionary: NSDictionary) {
-    if let recentId = recentDictionary[kRECENTID] {
-      reference(.Recent).document(recentId as! String).delete()
-    }
   }
 }
 
