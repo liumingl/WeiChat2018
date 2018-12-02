@@ -42,9 +42,15 @@ class ChatsViewController: UIViewController {
   }
   
   @IBAction func createNewChatButtonPressed(_ sender: Any) {
-    let userVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "usersTableView") as! UsersTableViewController
+    selectUserForChat(isGroup: false)
+  }
+  
+  func selectUserForChat(isGroup: Bool) {
+    let contactsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "contactsView") as! ContactsTableViewController
     
-    self.navigationController?.pushViewController(userVC, animated: true)
+    contactsVC.isGroup = isGroup
+    
+    self.navigationController?.pushViewController(contactsVC, animated: true)
   }
   
   //MARK: - Load Recent Chats
@@ -94,7 +100,7 @@ class ChatsViewController: UIViewController {
   }
   
   @objc func groupButtonPressed() {
-    print("Hello")
+    selectUserForChat(isGroup: true)
   }
   
 }

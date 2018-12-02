@@ -26,9 +26,12 @@
 		47516F592187557B007C1979 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47516F582187557B007C1979 /* HelperFunctions.swift */; };
 		47516F5B2187559A007C1979 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47516F5A2187559A007C1979 /* FCollectionReference.swift */; };
 		47516F5D2188980F007C1979 /* FinishRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47516F5C2188980F007C1979 /* FinishRegistrationViewController.swift */; };
+		4752630B21B4136F00BC4F47 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752630A21B4136F00BC4F47 /* CountryCode.swift */; };
 		47583E58219B0EBA008DBD05 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47583E57219B0EBA008DBD05 /* ChatViewController.swift */; };
 		47D3665A2191DC2C00E61068 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D366592191DC2C00E61068 /* Recent.swift */; };
 		47E3BDDA219085CA00F989AE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */; };
+		47EC1A9E21B3789C0079A431 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */; };
+		47EC1AA121B37F570079A431 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1AA021B37F570079A431 /* ContactsTableViewController.swift */; };
 		47EDA7C5219670B500024E5C /* RecentChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDA7C4219670B500024E5C /* RecentChatsTableViewCell.swift */; };
 		47F09B982186028F009FB46E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F09B972186028F009FB46E /* AppDelegate.swift */; };
 		47F09B9D2186028F009FB46E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47F09B9B2186028F009FB46E /* Main.storyboard */; };
@@ -64,9 +67,12 @@
 		47516F582187557B007C1979 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		47516F5A2187559A007C1979 /* FCollectionReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		47516F5C2188980F007C1979 /* FinishRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegistrationViewController.swift; sourceTree = "<group>"; };
+		4752630A21B4136F00BC4F47 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 		47583E57219B0EBA008DBD05 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		47D366592191DC2C00E61068 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		47EC1AA021B37F570079A431 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		47EDA7C4219670B500024E5C /* RecentChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChatsTableViewCell.swift; sourceTree = "<group>"; };
 		47F09B942186028F009FB46E /* WeiChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F09B972186028F009FB46E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 		47516F5F21889839007C1979 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4752630A21B4136F00BC4F47 /* CountryCode.swift */,
 				472DD66021A44EE40020F453 /* Camera.swift */,
 				47516F54218753A5007C1979 /* FUser.swift */,
 				47D366592191DC2C00E61068 /* Recent.swift */,
@@ -167,11 +174,21 @@
 				47583E57219B0EBA008DBD05 /* ChatViewController.swift */,
 				47F21C5F21A99CA200465B91 /* MapViewController.swift */,
 				47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */,
+				47EC1AA021B37F570079A431 /* ContactsTableViewController.swift */,
+				47EC1A9F21B37F340079A431 /* SettingsView */,
+			);
+			path = SecondaryViews;
+			sourceTree = "<group>";
+		};
+		47EC1A9F21B37F340079A431 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
 				4738062621B2CC8600782127 /* BlockedUsersViewController.swift */,
 				4738062821B2D59C00782127 /* BackgroundCollectionViewController.swift */,
 				4738062C21B2DBBB00782127 /* T&CViewController.swift */,
+				47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */,
 			);
-			path = SecondaryViews;
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 		47F09B8B2186028F009FB46E = {
@@ -396,12 +413,15 @@
 				4724584A218F3EF400D4B6E7 /* ChatsViewController.swift in Sources */,
 				4738062B21B2D5DB00782127 /* BackgroundCollectionViewCell.swift in Sources */,
 				47F09BAA218608B2009FB46E /* WelcomeViewController.swift in Sources */,
+				47EC1A9E21B3789C0079A431 /* EditProfileTableViewController.swift in Sources */,
 				47516F5D2188980F007C1979 /* FinishRegistrationViewController.swift in Sources */,
 				47245848218F357C00D4B6E7 /* UsersTableViewController.swift in Sources */,
 				47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */,
+				4752630B21B4136F00BC4F47 /* CountryCode.swift in Sources */,
 				47583E58219B0EBA008DBD05 /* ChatViewController.swift in Sources */,
 				4738062721B2CC8600782127 /* BlockedUsersViewController.swift in Sources */,
 				47516F57218753BF007C1979 /* Constants.swift in Sources */,
+				47EC1AA121B37F570079A431 /* ContactsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +569,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z3W45GNWDZ;
 				INFOPLIST_FILE = WeiChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -567,6 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z3W45GNWDZ;
 				INFOPLIST_FILE = WeiChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
