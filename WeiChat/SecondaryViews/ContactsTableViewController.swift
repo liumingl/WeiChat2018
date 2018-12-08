@@ -88,7 +88,13 @@ class ContactsTableViewController: UITableViewController {
   
   //MARK: - IBAction
   @objc func nextButtonPressed() {
-    print("next button pressed")
+    let newGroupVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newGroupView") as! NewGroupViewController
+    
+    newGroupVC.memberIds = memberIdsOfGroupChat
+    newGroupVC.allMembers = membersOfGroupChat
+    
+    self.navigationController?.pushViewController(newGroupVC, animated: true)
+    
   }
   
   @objc func inviteButtonPressed() {
@@ -392,7 +398,10 @@ class ContactsTableViewController: UITableViewController {
         self.allUsersGrouped[sectionTitle] = []
         
         // append title within section title list
-        self.sectionTitleList.append(sectionTitle)
+        if !sectionTitleList.contains(sectionTitle) {
+          self.sectionTitleList.append(sectionTitle)
+        }
+        
       }
       
       // add record to the section

@@ -203,3 +203,18 @@ func deleteRecentChat(recentDictionary: NSDictionary) {
   }
 }
 
+//MARK: - Group
+
+func createRecentsForNewMembers(groupId: String, groupName: String, membersToPush: [String], avatar: String) {
+  createRecent(members: membersToPush, chatRoomId: groupId, withUserUserName: groupName, type: kGROUP, users: nil, avatarOfGroup: avatar)
+}
+
+func startGroupChat(group: Group) {
+  let chatRoomId = group.groupDictionary[kGROUPID] as! String
+  
+  let members = group.groupDictionary[kMEMBERS] as! [String]
+  
+  createRecent(members: members, chatRoomId: chatRoomId, withUserUserName: group.groupDictionary[kNAME] as! String, type: kGROUP, users: nil, avatarOfGroup: group.groupDictionary[kAVATAR] as? String)
+}
+
+

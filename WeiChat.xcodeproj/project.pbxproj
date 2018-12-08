@@ -28,6 +28,9 @@
 		47516F5D2188980F007C1979 /* FinishRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47516F5C2188980F007C1979 /* FinishRegistrationViewController.swift */; };
 		4752630B21B4136F00BC4F47 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752630A21B4136F00BC4F47 /* CountryCode.swift */; };
 		47583E58219B0EBA008DBD05 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47583E57219B0EBA008DBD05 /* ChatViewController.swift */; };
+		4770CF7D21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770CF7C21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift */; };
+		4770CF7F21BC1375004D04B9 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770CF7E21BC1375004D04B9 /* NewGroupViewController.swift */; };
+		4770CF8121BC20DC004D04B9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770CF8021BC20DC004D04B9 /* Group.swift */; };
 		47D3665A2191DC2C00E61068 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D366592191DC2C00E61068 /* Recent.swift */; };
 		47E3BDDA219085CA00F989AE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */; };
 		47EC1A9E21B3789C0079A431 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */; };
@@ -69,6 +72,9 @@
 		47516F5C2188980F007C1979 /* FinishRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegistrationViewController.swift; sourceTree = "<group>"; };
 		4752630A21B4136F00BC4F47 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 		47583E57219B0EBA008DBD05 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		4770CF7C21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		4770CF7E21BC1375004D04B9 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
+		4770CF8021BC20DC004D04B9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		47D366592191DC2C00E61068 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 				47EDA7C4219670B500024E5C /* RecentChatsTableViewCell.swift */,
 				47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */,
 				4738062A21B2D5DB00782127 /* BackgroundCollectionViewCell.swift */,
+				4770CF7C21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -144,6 +151,7 @@
 				472DD66421A45F4D0020F453 /* PhotoMediaItem.swift */,
 				470F36EA21A5A8280088C8E9 /* VideoMessage.swift */,
 				47FFC3B521A84E9400489D15 /* AudioViewController.swift */,
+				4770CF8021BC20DC004D04B9 /* Group.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 				47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */,
 				47EC1AA021B37F570079A431 /* ContactsTableViewController.swift */,
 				47EC1A9F21B37F340079A431 /* SettingsView */,
+				4770CF7E21BC1375004D04B9 /* NewGroupViewController.swift */,
 			);
 			path = SecondaryViews;
 			sourceTree = "<group>";
@@ -413,11 +422,14 @@
 				4724584A218F3EF400D4B6E7 /* ChatsViewController.swift in Sources */,
 				4738062B21B2D5DB00782127 /* BackgroundCollectionViewCell.swift in Sources */,
 				47F09BAA218608B2009FB46E /* WelcomeViewController.swift in Sources */,
+				4770CF7F21BC1375004D04B9 /* NewGroupViewController.swift in Sources */,
 				47EC1A9E21B3789C0079A431 /* EditProfileTableViewController.swift in Sources */,
 				47516F5D2188980F007C1979 /* FinishRegistrationViewController.swift in Sources */,
 				47245848218F357C00D4B6E7 /* UsersTableViewController.swift in Sources */,
 				47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */,
+				4770CF8121BC20DC004D04B9 /* Group.swift in Sources */,
 				4752630B21B4136F00BC4F47 /* CountryCode.swift in Sources */,
+				4770CF7D21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift in Sources */,
 				47583E58219B0EBA008DBD05 /* ChatViewController.swift in Sources */,
 				4738062721B2CC8600782127 /* BlockedUsersViewController.swift in Sources */,
 				47516F57218753BF007C1979 /* Constants.swift in Sources */,
