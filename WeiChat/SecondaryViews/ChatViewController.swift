@@ -103,12 +103,16 @@ class ChatViewController: JSQMessagesViewController {
     navigationItem.largeTitleDisplayMode = .never
     self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "Back"), style: .plain, target: self, action: #selector(self.backAction))]
     
+//    if isGroup! {
+//      getCurrentGroup(withId: chatRoomId)
+//    }
+    
     collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
     collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
     
     jsqAvatarDictionary = [:]
     
-    setCustomTitle()
+    //setCustomTitle()
     
     loadMessages()
     
@@ -116,6 +120,14 @@ class ChatViewController: JSQMessagesViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     clearRecentCounter(chatRoomId: chatRoomId)
+    
+    if isGroup! {
+      getCurrentGroup(withId: chatRoomId)
+    }
+
+    
+    setCustomTitle()
+    loadUserDefaults()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -466,6 +478,19 @@ extension ChatViewController {
   }
   
   //MARK: - Helper functions
+  func getCurrentGroup(withId: String) {
+    reference(.Group).document(withId).getDocument { (snapshot, error) in
+      guard let snapshot = snapshot else { return }
+      
+      if snapshot.exists {
+        self.group = snapshot.data() as! NSDictionary
+        
+        self.setUIForGroupChat()
+      }
+    }
+  }
+  
+  
   func updatePushMembers(recent: NSDictionary, mute: Bool) {
     var membersToPush = recent[kMEMBERSTOPUSH] as! [String]
     
@@ -616,6 +641,16 @@ extension ChatViewController {
     avatarButton.addTarget(self, action: #selector(showUserProfile), for: .touchUpInside)
   }
   
+  func setUIForGroupChat() {
+    imageFromData(pictureData: group![kAVATAR] as! String) { (image) in
+      if image != nil {
+        avatarButton.setImage(image!.circleMasked, for: .normal)
+      }
+    }
+    titleLabel.text = titleName
+    subTitle.text = ""
+  }
+  
   @objc func infoButtonPressed() {
     let mediaVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mediaView") as! PicturesCollectionViewController
     
@@ -625,7 +660,9 @@ extension ChatViewController {
   }
   
   @objc func showGroup() {
-    print("show Group")
+    let groupVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "groupView") as! GroupViewController
+    groupVC.group = group!
+    navigationController?.pushViewController(groupVC, animated: true)
   }
   
   @objc func showUserProfile() {
@@ -751,6 +788,33 @@ extension ChatViewController {
       return false
     }else {
       return true
+    }
+  }
+  
+  func loadUserDefaults() {
+    firstLoad = userDefaults.bool(forKey: kFIRSTRUN)
+    
+    if !firstLoad! {
+      userDefaults.set(true, forKey: kFIRSTRUN)
+      userDefaults.set(showAvatars, forKey: kSHOWAVATAR)
+      
+      userDefaults.synchronize()
+    }
+    
+    showAvatars = userDefaults.bool(forKey: kSHOWAVATAR)
+    checkForBackgroundImage()
+  }
+  
+  func checkForBackgroundImage() {
+    if userDefaults.object(forKey: kBACKGROUBNDIMAGE) != nil {
+      self.collectionView.backgroundColor = .clear
+      
+      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+      
+      imageView.image = UIImage(named: userDefaults.object(forKey: kBACKGROUBNDIMAGE) as! String)!
+      imageView.contentMode = .scaleAspectFill
+      
+      self.view.insertSubview(imageView, at: 0)
     }
   }
   

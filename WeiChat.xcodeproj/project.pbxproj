@@ -16,6 +16,7 @@
 		472DD66121A44EE40020F453 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472DD66021A44EE40020F453 /* Camera.swift */; };
 		472DD66321A4532D0020F453 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472DD66221A4532D0020F453 /* Download.swift */; };
 		472DD66521A45F4D0020F453 /* PhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472DD66421A45F4D0020F453 /* PhotoMediaItem.swift */; };
+		473626DA21BD5BFE00DEADD8 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473626D921BD5BFE00DEADD8 /* GroupViewController.swift */; };
 		4738062721B2CC8600782127 /* BlockedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738062621B2CC8600782127 /* BlockedUsersViewController.swift */; };
 		4738062921B2D59C00782127 /* BackgroundCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738062821B2D59C00782127 /* BackgroundCollectionViewController.swift */; };
 		4738062B21B2D5DB00782127 /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738062A21B2D5DB00782127 /* BackgroundCollectionViewCell.swift */; };
@@ -31,6 +32,7 @@
 		4770CF7D21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770CF7C21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift */; };
 		4770CF7F21BC1375004D04B9 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770CF7E21BC1375004D04B9 /* NewGroupViewController.swift */; };
 		4770CF8121BC20DC004D04B9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770CF8021BC20DC004D04B9 /* Group.swift */; };
+		477DD95521BFF97E0000534C /* InviteUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477DD95421BFF97E0000534C /* InviteUsersTableViewController.swift */; };
 		47D3665A2191DC2C00E61068 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D366592191DC2C00E61068 /* Recent.swift */; };
 		47E3BDDA219085CA00F989AE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */; };
 		47EC1A9E21B3789C0079A431 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */; };
@@ -60,6 +62,7 @@
 		472DD66021A44EE40020F453 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		472DD66221A4532D0020F453 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		472DD66421A45F4D0020F453 /* PhotoMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMediaItem.swift; sourceTree = "<group>"; };
+		473626D921BD5BFE00DEADD8 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		4738062621B2CC8600782127 /* BlockedUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersViewController.swift; sourceTree = "<group>"; };
 		4738062821B2D59C00782127 /* BackgroundCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewController.swift; sourceTree = "<group>"; };
 		4738062A21B2D5DB00782127 /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		4770CF7C21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		4770CF7E21BC1375004D04B9 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		4770CF8021BC20DC004D04B9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		477DD95421BFF97E0000534C /* InviteUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUsersTableViewController.swift; sourceTree = "<group>"; };
 		47D366592191DC2C00E61068 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		47E3BDD9219085CA00F989AE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		47EC1A9D21B3789C0079A431 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				47EC1AA021B37F570079A431 /* ContactsTableViewController.swift */,
 				47EC1A9F21B37F340079A431 /* SettingsView */,
 				4770CF7E21BC1375004D04B9 /* NewGroupViewController.swift */,
+				473626D921BD5BFE00DEADD8 /* GroupViewController.swift */,
+				477DD95421BFF97E0000534C /* InviteUsersTableViewController.swift */,
 			);
 			path = SecondaryViews;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473626DA21BD5BFE00DEADD8 /* GroupViewController.swift in Sources */,
 				47EDA7C5219670B500024E5C /* RecentChatsTableViewCell.swift in Sources */,
 				47516F5B2187559A007C1979 /* FCollectionReference.swift in Sources */,
 				47D3665A2191DC2C00E61068 /* Recent.swift in Sources */,
@@ -421,6 +428,7 @@
 				472DD66321A4532D0020F453 /* Download.swift in Sources */,
 				4724584A218F3EF400D4B6E7 /* ChatsViewController.swift in Sources */,
 				4738062B21B2D5DB00782127 /* BackgroundCollectionViewCell.swift in Sources */,
+				477DD95521BFF97E0000534C /* InviteUsersTableViewController.swift in Sources */,
 				47F09BAA218608B2009FB46E /* WelcomeViewController.swift in Sources */,
 				4770CF7F21BC1375004D04B9 /* NewGroupViewController.swift in Sources */,
 				47EC1A9E21B3789C0079A431 /* EditProfileTableViewController.swift in Sources */,
