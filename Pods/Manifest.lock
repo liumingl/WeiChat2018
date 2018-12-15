@@ -141,6 +141,7 @@ PODS:
   - pop (1.0.12)
   - ProgressHUD (2.60)
   - Protobuf (3.6.1)
+  - RNCryptor (5.0.3)
   - SCSiriWaveformView (1.1.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -157,6 +158,7 @@ DEPENDENCIES:
   - JSQMessagesViewController (= 7.3.3)
   - MBProgressHUD
   - ProgressHUD
+  - RNCryptor
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -189,6 +191,7 @@ SPEC REPOS:
     - pop
     - ProgressHUD
     - Protobuf
+    - RNCryptor
     - SCSiriWaveformView
     - SDWebImage
 
@@ -222,9 +225,10 @@ SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: c16c7fe28cd332cb0fdb187e7b5a39cccc5e9512
+PODFILE CHECKSUM: 67ad121a6179bea124f60c397f60333bc82ce80b
 
 COCOAPODS: 1.5.3

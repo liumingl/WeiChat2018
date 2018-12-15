@@ -47,6 +47,7 @@
 		47F21C6221AAE24E00465B91 /* PicturesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */; };
 		47F21C6421AAE28500465B91 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */; };
 		47F5D62D218B4B6A002D0ABD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */; };
+		47FDB59A21C3F6A000853433 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDB59921C3F6A000853433 /* Encryption.swift */; };
 		47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FFC3B521A84E9400489D15 /* AudioViewController.swift */; };
 		8C97BD302B1910B29F788365 /* Pods_WeiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF1467B1EFBFBD2964A707 /* Pods_WeiChat.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCollectionViewController.swift; sourceTree = "<group>"; };
 		47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		47FDB59921C3F6A000853433 /* Encryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		47FFC3B521A84E9400489D15 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		655DCCF20F6E73CF3B9AA3B6 /* Pods-WeiChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiChat/Pods-WeiChat.release.xcconfig"; sourceTree = "<group>"; };
 		CAF6DA30D5EAC3BD9F12B89E /* Pods-WeiChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeiChat/Pods-WeiChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				470F36EA21A5A8280088C8E9 /* VideoMessage.swift */,
 				47FFC3B521A84E9400489D15 /* AudioViewController.swift */,
 				4770CF8021BC20DC004D04B9 /* Group.swift */,
+				47FDB59921C3F6A000853433 /* Encryption.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
@@ -382,6 +386,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
@@ -435,6 +440,7 @@
 				47516F5D2188980F007C1979 /* FinishRegistrationViewController.swift in Sources */,
 				47245848218F357C00D4B6E7 /* UsersTableViewController.swift in Sources */,
 				47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */,
+				47FDB59A21C3F6A000853433 /* Encryption.swift in Sources */,
 				4770CF8121BC20DC004D04B9 /* Group.swift in Sources */,
 				4752630B21B4136F00BC4F47 /* CountryCode.swift in Sources */,
 				4770CF7D21BC116B004D04B9 /* GroupMemberCollectionViewCell.swift in Sources */,

@@ -90,6 +90,7 @@ class ChatViewController: JSQMessagesViewController {
     super.viewDidLoad()
     
     createTypingObserver()
+    //loadUserDefaults()
     
     JSQMessagesCollectionViewCell.registerMenuAction(#selector(delete))
     
@@ -103,16 +104,16 @@ class ChatViewController: JSQMessagesViewController {
     navigationItem.largeTitleDisplayMode = .never
     self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "Back"), style: .plain, target: self, action: #selector(self.backAction))]
     
-//    if isGroup! {
-//      getCurrentGroup(withId: chatRoomId)
-//    }
+    if isGroup! {
+      getCurrentGroup(withId: chatRoomId)
+    }
     
     collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
     collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
     
     jsqAvatarDictionary = [:]
     
-    //setCustomTitle()
+    setCustomTitle()
     
     loadMessages()
     
@@ -121,13 +122,8 @@ class ChatViewController: JSQMessagesViewController {
   override func viewWillAppear(_ animated: Bool) {
     clearRecentCounter(chatRoomId: chatRoomId)
     
-    if isGroup! {
-      getCurrentGroup(withId: chatRoomId)
-    }
-
-    
-    setCustomTitle()
     loadUserDefaults()
+//    setCustomTitle()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -246,7 +242,9 @@ extension ChatViewController {
     
     // text message
     if let text = text {
-      outgoingMessage = OutgoingMessages(message: text, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kTEXT)
+      let encryptedText = Encryption.encrytText(chatRoomId: chatRoomId, message: text)
+      
+      outgoingMessage = OutgoingMessages(message: encryptedText, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kTEXT)
     }
     
     // picture message
@@ -254,10 +252,13 @@ extension ChatViewController {
       uploadImage(image: pic, chatRoomId: chatRoomId, view: self.navigationController!.view) { (imageLink) in
         if imageLink != nil {
           let text = "[\(kPICTURE)]"
-          outgoingMessage = OutgoingMessages(message: text, pictureLink: imageLink!, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kPICTURE)
+          let encryptedText = Encryption.encrytText(chatRoomId: self.chatRoomId, message: text)
+          
+          outgoingMessage = OutgoingMessages(message: encryptedText, pictureLink: imageLink!, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kPICTURE)
           
           JSQSystemSoundPlayer.jsq_playMessageSentSound()
           self.finishSendingMessage()
+          
           outgoingMessage?.sendMessage(chatRoomId: self.chatRoomId, messageDictionary: outgoingMessage!.messageDictionary, memberIds: self.memberIds, memberToPush: self.membersToPush)
         }
       }
@@ -273,7 +274,9 @@ extension ChatViewController {
       uploadVideo(video: videoData!, chatRoomId: chatRoomId, view: self.navigationController!.view) { (videoLink) in
         if videoLink != nil {
           let text = "[\(kVIDEO)]"
-          outgoingMessage = OutgoingMessages(message: text, video: videoLink!, thumbNail: dataThumbnail, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kVIDEO)
+          let encryptedText = Encryption.encrytText(chatRoomId: self.chatRoomId, message: text)
+          
+          outgoingMessage = OutgoingMessages(message: encryptedText, video: videoLink!, thumbNail: dataThumbnail, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kVIDEO)
           
           JSQSystemSoundPlayer.jsq_playMessageSentSound()
           self.finishSendingMessage()
@@ -289,7 +292,8 @@ extension ChatViewController {
       uploadAudio(audioPath: audioPath, chatRoomId: chatRoomId, view: self.navigationController!.view) { (audioLink) in
         if audioLink != nil {
           let text = "[\(kAUDIO)]"
-          outgoingMessage = OutgoingMessages(message: text, audio: audioLink!, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kAUDIO)
+          let encryptedText = Encryption.encrytText(chatRoomId: self.chatRoomId, message: text)
+          outgoingMessage = OutgoingMessages(message: encryptedText, audio: audioLink!, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kAUDIO)
           
           JSQSystemSoundPlayer.jsq_playMessageSentSound()
           self.finishSendingMessage()
@@ -301,12 +305,13 @@ extension ChatViewController {
     
     // send location message
     if location != nil {
-      print("send location")
       let lat: NSNumber = NSNumber(value: appDelegate.coordinates!.latitude)
       let long: NSNumber = NSNumber(value: appDelegate.coordinates!.longitude)
       
       let text = "[\(kLOCATION)]"
-      outgoingMessage = OutgoingMessages(message: text, latitude: lat, longitude: long, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kLOCATION)
+      let encryptedText = Encryption.encrytText(chatRoomId: self.chatRoomId, message: text)
+      
+      outgoingMessage = OutgoingMessages(message: encryptedText, latitude: lat, longitude: long, senderId: currentUser.objectId, senderName: currentUser.fullname, date: date, status: kDELIVERED, type: kLOCATION)
     }
     
     outgoingMessage!.sendMessage(chatRoomId: chatRoomId!, messageDictionary: outgoingMessage!.messageDictionary, memberIds: memberIds!, memberToPush: membersToPush!)
@@ -483,7 +488,7 @@ extension ChatViewController {
       guard let snapshot = snapshot else { return }
       
       if snapshot.exists {
-        self.group = snapshot.data() as! NSDictionary
+        self.group = snapshot.data()! as NSDictionary
         
         self.setUIForGroupChat()
       }
@@ -1002,6 +1007,10 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     sendMessage(text: nil, date: Date(), picture: picture, location: nil, video: video, audio: nil)
     
+    picker.dismiss(animated: true, completion: nil)
+  }
+  
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true, completion: nil)
   }
 }
