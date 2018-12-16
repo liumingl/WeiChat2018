@@ -8,6 +8,7 @@
 
 import UIKit
 import ProgressHUD
+import ImagePicker
 
 class GroupViewController: UIViewController {
   
@@ -88,7 +89,11 @@ class GroupViewController: UIViewController {
     let optionMenu = UIAlertController(title: "Choose Group Icon", message: nil, preferredStyle: .actionSheet)
     
     let takePhotoAction = UIAlertAction(title: "Take/Choose Photo", style: .default) { (alert) in
-      print("camera")
+      let imagePickerController = ImagePickerController()
+      imagePickerController.delegate = self
+      imagePickerController.imageLimit = 1
+      
+      self.present(imagePickerController, animated: true, completion: nil)
     }
     
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -107,5 +112,26 @@ class GroupViewController: UIViewController {
     
     self.present(optionMenu, animated: true, completion: nil)
   }
+  
+}
+
+extension GroupViewController: ImagePickerDelegate {
+  func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+    if images.count > 0 {
+      let avatarImage = images.first!
+      self.cameraButtonOutlet.image = avatarImage.circleMasked
+    }
+    
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
   
 }

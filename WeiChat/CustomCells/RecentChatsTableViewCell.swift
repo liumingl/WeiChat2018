@@ -47,7 +47,7 @@ class RecentChatsTableViewCell: UITableViewCell {
     self.indexPath = indexPath
     self.nameLabel.text = recentChat[kWITHUSERFULLNAME] as? String
     
-    let decryptedText = Encryption.decrytText(chatRoomId: recentChat[kCHATROOMID] as! String, encryptedMessage: recentChat[kLASTMESSAGE] as! String)
+    let decryptedText = Encryption.decryptText(chatRoomId: recentChat[kCHATROOMID] as! String, encryptedMessage: recentChat[kLASTMESSAGE] as! String)
     
     self.lastMessageLabel.text = decryptedText
     self.messageCounterLabel.text = recentChat[kCOUNTER] as? String
@@ -84,7 +84,6 @@ class RecentChatsTableViewCell: UITableViewCell {
   }
   
   @objc func avatarTap() {
-    print("avatar tap \(indexPath)")
     delegate?.didTapAvatarImage(indexPath: indexPath)
   }
   

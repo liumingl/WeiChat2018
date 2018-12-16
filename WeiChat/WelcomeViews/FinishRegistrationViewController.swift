@@ -8,6 +8,7 @@
 
 import UIKit
 import ProgressHUD
+import ImagePicker
 
 class FinishRegistrationViewController: UIViewController {
   
@@ -27,7 +28,7 @@ class FinishRegistrationViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    print(email, password)
+    avatarImageView.isUserInteractionEnabled = true
   }
   
   @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -56,6 +57,17 @@ class FinishRegistrationViewController: UIViewController {
     
     self.dismiss(animated: true, completion: nil)
   }
+  
+  @IBAction func avatarImageTap(_ sender: Any) {
+    let imagePickerController = ImagePickerController()
+    imagePickerController.delegate = self
+    imagePickerController.imageLimit = 1
+    
+    present(imagePickerController, animated: true, completion: nil)
+    
+    dismissKeyboard()
+  }
+  
   
   //MARK: - Helpers
   
@@ -121,4 +133,25 @@ class FinishRegistrationViewController: UIViewController {
     
     present(mainView, animated: true, completion: nil)
   }
+}
+
+extension FinishRegistrationViewController: ImagePickerDelegate {
+  func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+    if images.count > 0 {
+      self.avatarImage = images.first!
+      self.avatarImageView.image = avatarImage?.circleMasked
+    }
+    
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  
 }

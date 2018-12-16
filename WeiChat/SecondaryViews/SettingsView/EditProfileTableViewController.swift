@@ -8,6 +8,7 @@
 
 import UIKit
 import ProgressHUD
+import ImagePicker
 
 class EditProfileTableViewController: UITableViewController {
   
@@ -33,7 +34,11 @@ class EditProfileTableViewController: UITableViewController {
   //MARK: - IBActions
   
   @IBAction func avatarTap(_ sender: Any) {
-    print("show Image Picker")
+    let imagePickerController = ImagePickerController()
+    imagePickerController.delegate = self
+    imagePickerController.imageLimit = 1
+    
+    present(imagePickerController, animated: true, completion: nil)
   }
   
   
@@ -89,16 +94,6 @@ class EditProfileTableViewController: UITableViewController {
     return ""
   }
   
-  /*
-   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-   
-   // Configure the cell...
-   
-   return cell
-   }
-   */
-  
   //MARK: - setupUI
   func setupUI() {
     let currentUser = FUser.currentUser()!
@@ -116,4 +111,25 @@ class EditProfileTableViewController: UITableViewController {
       }
     }
   }
+}
+
+extension EditProfileTableViewController: ImagePickerDelegate {
+  func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+    if images.count > 0 {
+      self.avatarImage = images.first!
+      self.avatarImageView.image = avatarImage?.circleMasked
+    }
+    
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  
 }

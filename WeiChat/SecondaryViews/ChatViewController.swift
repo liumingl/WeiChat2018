@@ -748,7 +748,7 @@ extension ChatViewController {
       let messageDictionary = loadedMessages[i]
       
       //insert message
-      insertInitialLoadMessages(messageDictionary: messageDictionary)
+      _ = insertInitialLoadMessages(messageDictionary: messageDictionary)
       loadedMessageCount += 1
       
       

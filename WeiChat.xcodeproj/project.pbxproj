@@ -47,6 +47,7 @@
 		47F21C6221AAE24E00465B91 /* PicturesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */; };
 		47F21C6421AAE28500465B91 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */; };
 		47F5D62D218B4B6A002D0ABD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */; };
+		47F91FD221C635BB00DA48E3 /* ImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F91FD121C635BB00DA48E3 /* ImagePicker.framework */; };
 		47FDB59A21C3F6A000853433 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDB59921C3F6A000853433 /* Encryption.swift */; };
 		47FFC3B621A84E9400489D15 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FFC3B521A84E9400489D15 /* AudioViewController.swift */; };
 		8C97BD302B1910B29F788365 /* Pods_WeiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF1467B1EFBFBD2964A707 /* Pods_WeiChat.framework */; };
@@ -96,6 +97,7 @@
 		47F21C6121AAE24E00465B91 /* PicturesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCollectionViewController.swift; sourceTree = "<group>"; };
 		47F21C6321AAE28500465B91 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		47F5D62C218B4B6A002D0ABD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		47F91FD121C635BB00DA48E3 /* ImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FDB59921C3F6A000853433 /* Encryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		47FFC3B521A84E9400489D15 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		655DCCF20F6E73CF3B9AA3B6 /* Pods-WeiChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiChat/Pods-WeiChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F91FD221C635BB00DA48E3 /* ImagePicker.framework in Frameworks */,
 				8C97BD302B1910B29F788365 /* Pods_WeiChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +120,7 @@
 		4718AEFB915BB8B9172FDF46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47F91FD121C635BB00DA48E3 /* ImagePicker.framework */,
 				13FF1467B1EFBFBD2964A707 /* Pods_WeiChat.framework */,
 			);
 			name = Frameworks;
@@ -356,6 +360,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IDMPhotoBrowser/IDMPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/IQAudioRecorderController/IQAudioRecorderController.framework",
+				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -381,6 +386,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IDMPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQAudioRecorderController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",

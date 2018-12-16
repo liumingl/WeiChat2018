@@ -126,6 +126,7 @@ PODS:
     - DACircularProgress
     - pop
     - SDWebImage (= 4.0.0)
+  - ImagePicker (3.1.0)
   - IQAudioRecorderController (1.2.3):
     - SCSiriWaveformView
   - JSQMessagesViewController (7.3.3):
@@ -154,6 +155,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - IDMPhotoBrowser
+  - ImagePicker
   - IQAudioRecorderController
   - JSQMessagesViewController (= 7.3.3)
   - MBProgressHUD
@@ -182,6 +184,7 @@ SPEC REPOS:
     - gRPC-RxLibrary
     - GTMSessionFetcher
     - IDMPhotoBrowser
+    - ImagePicker
     - IQAudioRecorderController
     - JSQMessagesViewController
     - JSQSystemSoundPlayer
@@ -216,6 +219,7 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
+  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
   IQAudioRecorderController: 69a67c2e0b87bd8746cbb4de175fd7a0bf820009
   JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
@@ -229,6 +233,6 @@ SPEC CHECKSUMS:
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 67ad121a6179bea124f60c397f60333bc82ce80b
+PODFILE CHECKSUM: 1c5d92c3133ae6bce37655f8497be2dd6ff2d665
 
 COCOAPODS: 1.5.3
